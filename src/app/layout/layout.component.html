@@ -1,1 +1,5 @@
-<p>layout works!</p>
+<app-newsletter [user]="user" (subscribe)="changeUserName()"></app-newsletter>
+
+<button (click)="changeUserName()">
+  Change User Name
+</button>
