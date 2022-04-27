@@ -1,3 +1,4 @@
+import { UserService } from './../services/user.service';
 import { User } from './../interfaces/user';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,7 +14,9 @@ export class LayoutComponent implements OnInit {
     lastName: 'Smith'
   };
 
-  constructor() { }
+  constructor(
+    public userService: UserService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +26,7 @@ export class LayoutComponent implements OnInit {
   }
 
   changeUserName() {
-    this.user.firstName = 'Bob';
+    this.userService.loadUser({firstName: 'Bob', lastName: 'Smith'})
   }
 
 }
