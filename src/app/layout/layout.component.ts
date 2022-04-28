@@ -26,6 +26,7 @@ export class LayoutComponent implements OnInit {
   }
 
   changeUserName() {
+    console.log('changeUserName()');
     this.userService.loadUser({firstName: 'Bob', lastName: 'Smith'})
   }
 

@@ -1,6 +1,6 @@
 import { User } from './../interfaces/user';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, timeout } from 'rxjs';
 
 const ANONYMOUS_USER: User = {
   firstName: '',

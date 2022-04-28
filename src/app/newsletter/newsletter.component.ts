@@ -1,7 +1,9 @@
-import { Observable } from 'rxjs';
+import { UserService } from './../services/user.service';
+import { Observable, timeout } from 'rxjs';
 import { User } from './../interfaces/user';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { NewsletterService } from './newsletter.service';
 
 @Component({
   selector: 'app-newsletter',
@@ -10,16 +12,23 @@ import { ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsletterComponent implements OnInit {
-  
-  @Input() user$: Observable<User>;
 
-  @Output() subscribe = new EventEmitter();
+  firstName: string;
 
-  constructor() {}
+  constructor(
+    private newsletterService: NewsletterService,
+    public userService: UserService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userService.user$.subscribe(
+      user => this.firstName = user.firstName
+    );
+  }
 
   subscribeToNewsletter(email: string) {
-    this.subscribe.emit(email);
+    this.newsletterService.subscribe(email);
   }
+
+
 }
